@@ -1,0 +1,64 @@
+=======================================
+Install Virtual Environment:
+sudo pip install virtualenv
+sudo pip install virtualenvwrapper
+mkdir ~/.virtualenvs
+Buka File .bashrc
+  Copas export WORKON_HOME=$HOME/.virtualenvs && source /usr/local/bin/virtualenvwrapper_lazy.sh di .bashrc
+Memberikan akses virtual environment ke user:
+sudo chown -R dhadiansyah(nama_user): /home/dhadiansyah/.virtualenvs
+Melihat Versi virtual environment:
+* pip show virtualenv
+Membuat virtualenv:
+* mkvirtualenv openerp6
+Menggunakan Virtualenv:
+* workon / workon openerp6
+Mematikan Virtualenv:
+* deactivate
+Menghapus Virtualenv:
+* rmvirtualenv openerp6
+=======================================
+Install:
+pip install Django==1.8.4
+pip install django-autoslug==1.8.0
+pip install psycopg2==2.6.1
+=======================================
+Create And Install requirements pip
+pip freeze > requirements.txt
+pip install -r requirements.txt
+=======================================
+Setup Database:
+* sudo adduser --system --home=/opt/rad --group rad
+* sudo su postgres
+* createdb ukm
+* createuser rad -P  (Password:RADukm05092015)
+* psql
+* GRANT ALL PRIVILEGES ON DATABASE ukm to rad;
+* \q
+* Change File /home/dhadiansyah/Futsal/mysite/settings.py with:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ukm',
+        'USER': 'rad',
+        'PASSWORD': 'RADukm05092015',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+Create/Update Models/Tables:
+*ketik: python manage.py makemigrations
+*Ketik: python manage.py migrate
+
+Membuat SuperUser DJango:
+* python manage.py createsuperuser
+Username: dhadiansyah
+Email address: donihadiansyah@gmail.com
+Password: RADukm05092015
+=======================================
+Creating a Django Aplication:
+python manage.py startapp <aplication_name>
+	ex: python manage.py startapp ukm_project
+python manage.py makemigrations
+python manage.py migrate
